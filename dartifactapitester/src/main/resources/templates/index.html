@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP Stress Court</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 HTTP Stress Court</h1>
+    <p class="subtitle">Send concurrent HTTP requests and get a verdict.</p>
+
+    <!-- Input Form -->
+    <div class="card">
+        <form id="stressForm">
+            <label>API URL
+                <input type="url" name="url" placeholder="https://example.com/api" required>
+            </label>
+
+            <label>Method
+                <select name="method">
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="PATCH">PATCH</option>
+                </select>
+            </label>
+
+            <label>Concurrency
+                <input type="number" name="concurrency" value="10" min="1" max="1000" required>
+            </label>
+
+            <label>Duration (seconds)
+                <input type="number" name="durationSeconds" value="5" min="1" max="60" required>
+            </label>
+
+            <label>Request Body (JSON)
+                <textarea name="body" rows="5" placeholder='{"key":"value"}'></textarea>
+            </label>
+
+            <button type="submit">Run Stress Test</button>
+        </form>
+    </div>
+
+    <!-- Result Card -->
+    <div class="card">
+        <h2>Result:</h2>
+        <div id="loader" class="loader" style="display:none;"></div>
+        <pre id="result" th:text="${result}"></pre>
+    </div>
+</div>
+
+<script th:src="@{/script.js}"></script>
+</body>
+</html>
